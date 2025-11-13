@@ -74,7 +74,11 @@ SUBSYSTEM_DEF(soundloopers)
 
 	//Now we check how far away etc we are
 	for(var/datum/looping_sound/loop in played_loops)
-		var/atom/loop_parent = loop.parent.resolve()
+		if (!loop)
+			played_loops -= loop
+			continue
+		
+		var/atom/loop_parent = loop.parent?.resolve()
 		if(!loop_parent)
 			continue
 
