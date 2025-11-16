@@ -392,7 +392,7 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				selected_lang = extra_language
 				lang_output = initial(selected_lang.name)
 
-			dat += "[virtue_origin.extra_language ? "<b>Extra Language: </b>" : "<s><b>Extra Language:</b></s> "]<a href='?_src_=prefs;preference=extra_language;task=input'>[lang_output]</a><BR>"
+			dat += "[virtue_origin.extra_language ? "<b>Free Language: </b>" : "<s><b>Free Language:</b></s> "]<a href='?_src_=prefs;preference=extra_language;task=input'>[lang_output]</a><BR>"
 
 			// LETHALSTONE EDIT BEGIN: add statpack selection
 			dat += "<b>Statpack:</b> <a href='?_src_=prefs;preference=statpack;task=input'>[statpack.name]</a><BR>"
