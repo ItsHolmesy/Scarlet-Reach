@@ -57,6 +57,20 @@
 	color_key_names = list("Tail", "Tip")
 	can_wag = TRUE
 
+/datum/sprite_accessory/tail/batlmaw
+	name = "Bat (Long, Maw)"
+	icon_state = "batl"
+	color_keys = 2
+	color_key_names = list("Tail", "Tip")
+	can_wag = TRUE
+
+/datum/sprite_accessory/tail/batsmaw
+	name = "Bat (Short, Maw)"
+	icon_state = "bats"
+	color_keys = 2
+	color_key_names = list("Tail", "Tip")
+	can_wag = TRUE
+
 /datum/sprite_accessory/tail/bee
 	name = "Bee"
 	icon_state = "bee"
@@ -395,6 +409,13 @@
 
 /datum/sprite_accessory/tail/rattlesnake
 	name = "Rattlesnake"
+	icon_state = "rattlesnake"
+	color_keys = 2
+	color_key_names = list("Tail", "Tip")
+	can_wag = TRUE
+
+/datum/sprite_accessory/tail/rattlesnakemaw
+	name = "Rattlesnake (Maw)"
 	icon_state = "rattlesnake"
 	color_keys = 2
 	color_key_names = list("Tail", "Tip")
