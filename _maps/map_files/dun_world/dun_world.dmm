@@ -39216,15 +39216,6 @@
 	},
 /turf/open/floor/rogue/blocks/stonered/tiny,
 /area/rogue/indoors/town)
-"kvp" = (
-/obj/effect/decal/cobbleedge{
-	dir = 1
-	},
-/obj/structure/bars/passage{
-	redstone_id = "keepgate_inner"
-	},
-/turf/open/floor/rogue/cobble,
-/area/rogue/outdoors/exposed/town/keep)
 "kvC" = (
 /obj/structure/bars/pipe{
 	dir = 1
@@ -52095,16 +52086,16 @@
 "nOQ" = (
 /obj/structure/fluff/railing/border,
 /obj/structure/closet/crate/chest/wicker,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
-/obj/item/natural/stone,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
+/obj/item/natural/stoneblock,
 /obj/effect/decal/cobbleedge{
 	dir = 1
 	},
@@ -77839,10 +77830,11 @@
 /turf/open/floor/rogue/cobblerock,
 /area/rogue/outdoors/town)
 "uAL" = (
-/obj/structure/mineral_door/wood/violet{
-	lockid = "steward";
+/obj/structure/mineral_door/wood/donjon{
+	dir = 8;
 	locked = 1;
-	name = "Reception Desk"
+	lockid = "steward";
+	name = "To Stewardry"
 	},
 /turf/open/floor/rogue/hexstone,
 /area/rogue/indoors/town)
@@ -267656,13 +267648,13 @@ nBX
 nBX
 nBX
 nBX
-pSg
-pSg
-pSg
-pSg
-pSg
-pSg
-pSg
+nBX
+nBX
+nBX
+nBX
+nBX
+nBX
+nBX
 nBX
 nBX
 xkf
@@ -298319,7 +298311,7 @@ wGW
 rjp
 hrE
 xOI
-kvp
+myT
 myT
 hrE
 srn
@@ -414034,7 +414026,7 @@ myn
 iWa
 iWa
 iWa
-gqd
+csl
 fPi
 aQI
 csl
