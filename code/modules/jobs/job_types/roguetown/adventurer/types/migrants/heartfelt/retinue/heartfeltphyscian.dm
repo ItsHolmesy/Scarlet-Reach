@@ -12,6 +12,26 @@
 	class_select_category = CLASS_CAT_HFT_COURT
 	subclass_social_rank = SOCIAL_RANK_NOBLE
 
+	subclass_stats = list(
+		STATKEY_INT = 4,
+		STATKEY_END = 1,
+		STATKEY_LCK = 1,
+		STATKEY_SPD = 2,
+		STATKEY_STR = -1,
+		STATKEY_CON = -1,
+	)
+
+	subclass_skills = list(
+		/datum/skill/misc/reading = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/polearms = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/craft/alchemy = SKILL_LEVEL_MASTER,
+		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
+		/datum/skill/misc/sewing = SKILL_LEVEL_JOURNEYMAN,
+		/datum/skill/misc/medicine = SKILL_LEVEL_LEGENDARY,
+	)
 // HIGH COURT - /ONE SLOT/ Roles that were previously in the Court, but moved here.
 
 /datum/outfit/job/roguetown/heartfelt/retinue/physician/pre_equip(mob/living/carbon/human/H)
@@ -28,16 +48,18 @@
 	beltl = /obj/item/storage/belt/rogue/surgery_bag/full/physician
 	beltr = /obj/item/rogueweapon/huntingknife
 	id = /obj/item/scomstone/bad
-	r_hand = /obj/item/rogueweapon/woodstaff
-	backl = /obj/item/storage/backpack/rogue/satchel/black
+	r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/steel
+	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 2,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpotnew = 2,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 2,
 		/obj/item/natural/worms/leech/cheele = 1, //little buddy
 		/obj/item/reagent_containers/glass/bottle/waterskin = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
 		/obj/item/recipe_book/alchemy = 1,
+		/obj/item/bedroll = 1,
 	)
+
 	ADD_TRAIT(H, TRAIT_HEARTFELT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOSTINK, TRAIT_GENERIC)
 	ADD_TRAIT(H,TRAIT_EMPATH, TRAIT_GENERIC)
