@@ -239,7 +239,7 @@ var/global/list/PATRON_ARTIFACTS = list(
 	if(tier_val > 4) tier_val = 4
 	return tier_val
 
-// 0 → -1 (ничего), 1 → 1, 2 → 2, 3/4 → 4
+// 0 → -1 (nuffin), 1 → 1, 2 → 2, 3/4 → 4
 /proc/allowed_tier_by_relation(level)
 	if(!isnum(level) || level <= 0) return -1
 	if(level == 1) return 1
@@ -773,7 +773,7 @@ var/global/list/PATRON_ARTIFACTS = list(
 			init_needed = FALSE
 
 	if(init_needed)
-		H.quest_ui_entries = _rt_build_player_quest_set(H) // определён в quests.dm
+		H.quest_ui_entries = _rt_build_player_quest_set(H) // see quests.dm
 		if(!H.quest_reroll_last_ds) H.quest_reroll_last_ds = world.time
 	_update_reroll_charges(H)
 
