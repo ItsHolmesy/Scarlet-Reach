@@ -962,8 +962,8 @@ proc/_rt_effect_type_name(T)
 	desc = "Record the reaction: the target must bear an allowed effect."
 	icon_state = "questflaw"
 
-	var/list/required_effect_types = list(
-		/datum/status_effect/buff/sermon,        
+	var/global/list/Q_WITNESS_EFFECTS = list(
+		/datum/status_effect/buff/sermon,
 		/datum/status_effect/buff/drunk,
 		/datum/status_effect/buff/foodbuff,
 		/datum/status_effect/buff/ozium,
@@ -1400,11 +1400,18 @@ proc/_rt_effect_type_name(T)
 	//---------------------------------------------------
 	// 9) sermon_witness aka Record the Reaction
 
+//---------------------------------------------------
+// 9) sermon_witness aka Record the Reaction
+//---------------------------------------------------
+
 	var/list/witness_diffs = list()
 	for(var/dn9 in diff_generic)
 		var/list/D9 = diff_generic[dn9]
 		var/rew9    = D9["reward"]
-		var/cn9     = ( "count" in D9 ? D9["count"] : 1 )
+
+		var/cn9 = 1
+		if("count" in D9 && isnum(D9["count"]))
+			cn9 = D9["count"]
 
 		var/list/pool   = (islist(Q_WITNESS_EFFECTS) && Q_WITNESS_EFFECTS.len) ? Q_WITNESS_EFFECTS : list(/datum/status_effect/buff/sermon)
 		var/list/picked = _rt_pick_unique(pool, max(1, cn9))
@@ -1412,12 +1419,11 @@ proc/_rt_effect_type_name(T)
 		var/list/names = list()
 		for(var/T in picked)
 			names += html_attr(_rt_effect_type_name(T))
-
-		var/desc_txt = "Confirm the target bears ANY of: [jointext(names, \", \")]."
+		var/effects_desc_txt = jointext(names, ", ")
 
 		witness_diffs[dn9] = list(
 			"diff"       = dn9,
-			"desc" = "Record the reaction: target must bear ANY of: [effects_desc_txt].",
+			"desc"       = "Record the reaction: target must bear ANY of: [effects_desc_txt].",
 			"reward"     = rew9,
 			"token_path" = /obj/item/quest_token/sermon_witness,
 			"params"     = list("required_effect_types" = picked),
@@ -1429,6 +1435,7 @@ proc/_rt_effect_type_name(T)
 		"title"         = "Record the Reaction",
 		"accepted_diff" = "",
 		"difficulties"  = witness_diffs
+	))
 
 	//---------------------------------------------------
 	// 10) flaw_aid
