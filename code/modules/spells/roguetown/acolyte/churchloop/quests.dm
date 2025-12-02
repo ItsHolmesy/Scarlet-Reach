@@ -287,11 +287,9 @@
 	return FALSE
 
 /proc/_rt_antag_tier(mob/living/carbon/human/H)
-	if(_rt_mob_has_antag_datum(H, /datum/antagonist/vampirelord)) return 3
 	if(_rt_mob_has_antag_datum(H, /datum/antagonist/lich))        return 3
 
 	if(_rt_mob_has_antag_datum(H, /datum/antagonist/werewolf))                     return 2
-	if(_rt_mob_has_antag_datum(H, /datum/antagonist/vampirelord/lesser))           return 2
 
 	if(_rt_is_bandit_or_wretch(H)) return 1
 
