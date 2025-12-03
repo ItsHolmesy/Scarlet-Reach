@@ -23,7 +23,6 @@
 	multi_activate = TRUE
 	cooldown_length = 30 SECONDS
 
-
 /datum/coven_power/presence/awe/activate(mob/living/carbon/human/target)
 	. = ..()
 	var/mypower = owner.STAINT
