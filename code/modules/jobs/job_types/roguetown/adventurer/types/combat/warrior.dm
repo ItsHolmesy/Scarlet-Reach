@@ -296,7 +296,7 @@
 		if("Arming Sword") //flat worse than the longsword so you get a shield
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			backr = /obj/item/rogueweapon/shield/wood // wood so you can carve a psycross/astratan cross on it
-			beltl = /obj/item/rogueweapon/sword
+			r_hand = /obj/item/rogueweapon/sword
 		if("Short Sword") //swift balance option
 			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			backr = /obj/item/rogueweapon/sword/short
@@ -311,7 +311,7 @@
 				backr = /obj/item/rogueweapon/sword/long //there's a church longsword but it has no sprite. we should give them it when theres a sprite tho
 		if("Slurbow") //WHOA!! Don't worry, they don't start with any crossbow skill or bonus PER. The Slurbow's description implies it's a common weapon for highwaymen, so it's not impossible to see it in the hands of an adventurer.
 			backr = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow/old //their powered-down version of the inquisition slurbow
-			beltl = /obj/item/quiver/bolts
+			r_hand = /obj/item/quiver/bolts
 		if("Whip & Buckler")	//any Simon Belmonts in chat?
 			H.adjust_skillrank_up_to(/datum/skill/combat/whipsflails, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			backr =	/obj/item/rogueweapon/shield/buckler
