@@ -377,7 +377,7 @@ var/global/list/PATRON_ARTIFACTS = list(
 	var/current_org_tab = "none"   // none | t1 | t2 | t3
 	var/current_art_tab = "none"
 	var/current_rel_tab = "none"   // none | ten | shunned
-	var/current_learn_tab = "own"  // own | all | shunned |
+	var/current_learn_tab = "none" // none | patron_name
 
 /obj/effect/proc_holder/spell/self/learnmiracle/proc/_ensure_relations(mob/living/carbon/human/H)
 	if(!H.patron_relations || !islist(H.patron_relations))
@@ -493,8 +493,12 @@ var/global/list/PATRON_ARTIFACTS = list(
 	html += "Favor: <b>[H.church_favor]</b> | MP: <b>[H.miracle_points]</b><hr>"
 
 	var/list/nav = list()
-	nav += (src.current_learn_tab == "own") ? "<b>Own</b>" : "<a href='?src=[REF(src)];learntab=own'>Own</a>"
-	nav += (src.current_learn_tab == "all") ? "<b>All</b>" : "<a href='?src=[REF(src)];learntab=all'>All</a>"
+
+	// None
+	if(src.current_learn_tab == "none")
+		nav += "<b>None</b>"
+	else
+		nav += "<a href='?src=[REF(src)];learntab=none'>None</a>"
 
 	// --- divine
 	for(var/n in names_div)
@@ -516,27 +520,15 @@ var/global/list/PATRON_ARTIFACTS = list(
 
 	var/list/show_list = list()
 
-	if(src.current_learn_tab == "own")
-		var/my_patron = ""
-		if(H.devotion && H.devotion.patron && ("name" in H.devotion.patron.vars))
-			my_patron = "[H.devotion.patron.vars["name"]]"
-		if(length(my_patron))
-			show_list += my_patron
-
-	else if(src.current_learn_tab == "all")
-		for(var/pn in names_div)
-			if(islist(buckets[pn])  && length(buckets[pn]))  show_list += pn
-		if(sh_unl)
-			for(var/pn2 in names_inh)
-				if(islist(buckets[pn2]) && length(buckets[pn2])) show_list += pn2
-
-	else
-		// patron picked
+	if(src.current_learn_tab != "none")
 		if(islist(buckets[src.current_learn_tab]) && length(buckets[src.current_learn_tab]))
 			show_list += src.current_learn_tab
 
 	if(!show_list.len)
-		html += "<i>No miracles available for this tab.</i>"
+		if(src.current_learn_tab == "none")
+			html += "<i>Select a patron above to see their miracles.</i>"
+		else
+			html += "<i>No miracles available for this patron.</i>"
 	else
 		for(var/pn3 in show_list)
 			var/list/L = buckets[pn3]
@@ -1118,20 +1110,23 @@ var/global/list/PATRON_ARTIFACTS = list(
 	if(href_list["learntab"])
 		var/tb2 = href_list["learntab"]
 
-		if(tb2 == "own" || tb2 == "all")
-			src.current_learn_tab = tb2
-			open_learn_ui(H); return
+		// if None Then None I use It to hide issues not un block it
+		if(tb2 == "none")
+			src.current_learn_tab = "none"
+			open_learn_ui(H)
+			return
 
 		build_divine_patrons_index()
 		build_inhumen_patrons_index()
 
 		var/can_select = FALSE
-		// divine: 
+
+		// divine
 		if(tb2 in divine_patrons_index)
 			var/relv = H.patron_relations && (tb2 in H.patron_relations) ? H.patron_relations[tb2] : 0
 			if(relv > 0) can_select = TRUE
 
-		// inhumen: 
+		// inhumen
 		if(!can_select && (tb2 in inhumen_patrons_index))
 			if(_shunned_relations_unlocked(H))
 				var/relv2 = H.patron_relations && (tb2 in H.patron_relations) ? H.patron_relations[tb2] : 0
@@ -1140,7 +1135,8 @@ var/global/list/PATRON_ARTIFACTS = list(
 		if(can_select)
 			src.current_learn_tab = "[tb2]"
 
-		open_learn_ui(H); return
+		open_learn_ui(H)
+		return
 
 	// --- Learn click ---
 	if(href_list["learnspell"])
