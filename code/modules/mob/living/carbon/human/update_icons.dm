@@ -141,117 +141,117 @@ There are several things that need to be remembered:
 		var/body_zone = BP.body_zone
 		var/aux_zone = BP.aux_zone
 
+		// Calculate pixel offsets early so we can pass them to cache function
+		var/used_offset = is_female ? BP.offset_f : BP.offset
+		var/has_offset = (used_offset in offset_features)
+		var/offset_x = has_offset ? offset_features[g][1] : 0
+		var/offset_y = has_offset ? offset_features[g][2] : 0
+
 		if(!BP.skeletonized)
 			if(BP.brutestate)
-				damage_overlays += get_cached_damage_overlay(limb_icon, "[body_zone]_[BP.brutestate]0", DAMAGE_LAYER)
-				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[body_zone]_[BP.brutestate]0", LEG_DAMAGE_LAYER)
-				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[body_zone]_[BP.brutestate]0", ARM_DAMAGE_LAYER)
+				damage_overlays += get_cached_damage_overlay(limb_icon, "[body_zone]_[BP.brutestate]0", DAMAGE_LAYER, offset_x, offset_y)
+				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[body_zone]_[BP.brutestate]0", LEG_DAMAGE_LAYER, offset_x, offset_y)
+				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[body_zone]_[BP.brutestate]0", ARM_DAMAGE_LAYER, offset_x, offset_y)
 			if(BP.burnstate)
-				damage_overlays += get_cached_damage_overlay(limb_icon, "[body_zone]_0[BP.burnstate]", DAMAGE_LAYER)
-				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[body_zone]_0[BP.burnstate]", LEG_DAMAGE_LAYER)
-				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[body_zone]_0[BP.burnstate]", ARM_DAMAGE_LAYER)
+				damage_overlays += get_cached_damage_overlay(limb_icon, "[body_zone]_0[BP.burnstate]", DAMAGE_LAYER, offset_x, offset_y)
+				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[body_zone]_0[BP.burnstate]", LEG_DAMAGE_LAYER, offset_x, offset_y)
+				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[body_zone]_0[BP.burnstate]", ARM_DAMAGE_LAYER, offset_x, offset_y)
 			if(BP.get_bleed_rate())
 				bleed_checker = TRUE
 				if(BP.bandage)
 					var/bandage_color = BP.bandage.color
 					var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[body_zone]_b", -DAMAGE_LAYER)
 					damage_overlay.color = bandage_color
+					damage_overlay.pixel_x = offset_x
+					damage_overlay.pixel_y = offset_y
 					damage_overlays += damage_overlay
 					var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[body_zone]_b", -LEG_DAMAGE_LAYER)
 					legdam_overlay.color = bandage_color
+					legdam_overlay.pixel_x = offset_x
+					legdam_overlay.pixel_y = offset_y
 					legdam_overlays += legdam_overlay
 					var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[body_zone]_b", -ARM_DAMAGE_LAYER)
 					armdam_overlay.color = bandage_color
+					armdam_overlay.pixel_x = offset_x
+					armdam_overlay.pixel_y = offset_y
 					armdam_overlays += armdam_overlay
 			wound_overlays = list()
 			for(var/datum/wound/wound as anything in BP.wounds)
 				if(wound?.mob_overlay)
 					wound_overlays |= wound.mob_overlay
 			for(var/wound_overlay in wound_overlays)
-				damage_overlays += get_cached_damage_overlay(limb_icon, "[body_zone]_[wound_overlay]", DAMAGE_LAYER)
-				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[body_zone]_[wound_overlay]", LEG_DAMAGE_LAYER)
-				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[body_zone]_[wound_overlay]", ARM_DAMAGE_LAYER)
+				damage_overlays += get_cached_damage_overlay(limb_icon, "[body_zone]_[wound_overlay]", DAMAGE_LAYER, offset_x, offset_y)
+				legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[body_zone]_[wound_overlay]", LEG_DAMAGE_LAYER, offset_x, offset_y)
+				armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[body_zone]_[wound_overlay]", ARM_DAMAGE_LAYER, offset_x, offset_y)
 
 		if(!bleed_checker && BP.bandage)
 			var/bandage_color = BP.bandage.color
 			var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[body_zone]_b", -DAMAGE_LAYER)
 			damage_overlay.color = bandage_color
+			damage_overlay.pixel_x = offset_x
+			damage_overlay.pixel_y = offset_y
 			damage_overlays += damage_overlay
 			var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[body_zone]_b", -LEG_DAMAGE_LAYER)
 			legdam_overlay.color = bandage_color
+			legdam_overlay.pixel_x = offset_x
+			legdam_overlay.pixel_y = offset_y
 			legdam_overlays += legdam_overlay
 			var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[body_zone]_b", -ARM_DAMAGE_LAYER)
 			armdam_overlay.color = bandage_color
+			armdam_overlay.pixel_x = offset_x
+			armdam_overlay.pixel_y = offset_y
 			armdam_overlays += armdam_overlay
 
 		if(aux_zone && !((body_zone == BODY_ZONE_CHEST) && hidechest))
 			if(!BP.skeletonized)
 				if(BP.brutestate)
-					damage_overlays += get_cached_damage_overlay(limb_icon, "[aux_zone]_[BP.brutestate]0", DAMAGE_LAYER)
-					legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[aux_zone]_[BP.brutestate]0", LEG_DAMAGE_LAYER)
-					armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[aux_zone]_[BP.brutestate]0", ARM_DAMAGE_LAYER)
+					damage_overlays += get_cached_damage_overlay(limb_icon, "[aux_zone]_[BP.brutestate]0", DAMAGE_LAYER, offset_x, offset_y)
+					legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[aux_zone]_[BP.brutestate]0", LEG_DAMAGE_LAYER, offset_x, offset_y)
+					armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[aux_zone]_[BP.brutestate]0", ARM_DAMAGE_LAYER, offset_x, offset_y)
 				if(BP.burnstate)
-					damage_overlays += get_cached_damage_overlay(limb_icon, "[aux_zone]_0[BP.burnstate]", DAMAGE_LAYER)
-					legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[aux_zone]_0[BP.burnstate]", LEG_DAMAGE_LAYER)
-					armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[aux_zone]_0[BP.burnstate]", ARM_DAMAGE_LAYER)
+					damage_overlays += get_cached_damage_overlay(limb_icon, "[aux_zone]_0[BP.burnstate]", DAMAGE_LAYER, offset_x, offset_y)
+					legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[aux_zone]_0[BP.burnstate]", LEG_DAMAGE_LAYER, offset_x, offset_y)
+					armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[aux_zone]_0[BP.burnstate]", ARM_DAMAGE_LAYER, offset_x, offset_y)
 				if(bleed_checker && BP.bandage)
 					var/bandage_color = BP.bandage.color
 					var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[aux_zone]_b", -DAMAGE_LAYER)
 					damage_overlay.color = bandage_color
+					damage_overlay.pixel_x = offset_x
+					damage_overlay.pixel_y = offset_y
 					damage_overlays += damage_overlay
 					var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[aux_zone]_b", -LEG_DAMAGE_LAYER)
 					legdam_overlay.color = bandage_color
+					legdam_overlay.pixel_x = offset_x
+					legdam_overlay.pixel_y = offset_y
 					legdam_overlays += legdam_overlay
 					var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[aux_zone]_b", -ARM_DAMAGE_LAYER)
 					armdam_overlay.color = bandage_color
+					armdam_overlay.pixel_x = offset_x
+					armdam_overlay.pixel_y = offset_y
 					armdam_overlays += armdam_overlay
 				for(var/wound_overlay in wound_overlays)
-					damage_overlays += get_cached_damage_overlay(limb_icon, "[aux_zone]_[wound_overlay]", DAMAGE_LAYER)
-					legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[aux_zone]_[wound_overlay]", LEG_DAMAGE_LAYER)
-					armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[aux_zone]_[wound_overlay]", ARM_DAMAGE_LAYER)
+					damage_overlays += get_cached_damage_overlay(limb_icon, "[aux_zone]_[wound_overlay]", DAMAGE_LAYER, offset_x, offset_y)
+					legdam_overlays += get_cached_damage_overlay(limb_icon, "legdam_[aux_zone]_[wound_overlay]", LEG_DAMAGE_LAYER, offset_x, offset_y)
+					armdam_overlays += get_cached_damage_overlay(limb_icon, "armdam_[aux_zone]_[wound_overlay]", ARM_DAMAGE_LAYER, offset_x, offset_y)
 			if(!bleed_checker && BP.bandage)
 				var/bandage_color = BP.bandage.color
 				var/mutable_appearance/damage_overlay = mutable_appearance(limb_icon, "[aux_zone]_b", -DAMAGE_LAYER)
 				damage_overlay.color = bandage_color
+				damage_overlay.pixel_x = offset_x
+				damage_overlay.pixel_y = offset_y
 				damage_overlays += damage_overlay
 				var/mutable_appearance/legdam_overlay = mutable_appearance(limb_icon, "legdam_[aux_zone]_b", -LEG_DAMAGE_LAYER)
 				legdam_overlay.color = bandage_color
+				legdam_overlay.pixel_x = offset_x
+				legdam_overlay.pixel_y = offset_y
 				legdam_overlays += legdam_overlay
 				var/mutable_appearance/armdam_overlay = mutable_appearance(limb_icon, "armdam_[aux_zone]_b", -ARM_DAMAGE_LAYER)
 				armdam_overlay.color = bandage_color
+				armdam_overlay.pixel_x = offset_x
+				armdam_overlay.pixel_y = offset_y
 				armdam_overlays += armdam_overlay
 
-		var/used_offset = is_female ? BP.offset_f : BP.offset
-		var/has_offset = (used_offset in offset_features)
-		var/offset_x = has_offset ? offset_features[g][1] : 0
-		var/offset_y = has_offset ? offset_features[g][2] : 0
-
-		if(has_offset)
-			// Must copy cached appearances before modifying pixel offsets to avoid permanently altering the cache
-			var/list/damage_overlays_copy = list()
-			for(var/mutable_appearance/M as anything in damage_overlays)
-				var/mutable_appearance/M_copy = new /mutable_appearance(M)
-				M_copy.pixel_x = M.pixel_x + offset_x
-				M_copy.pixel_y = M.pixel_y + offset_y
-				damage_overlays_copy += M_copy
-			damage_overlays = damage_overlays_copy
-
-			var/list/legdam_overlays_copy = list()
-			for(var/mutable_appearance/M as anything in legdam_overlays)
-				var/mutable_appearance/M_copy = new /mutable_appearance(M)
-				M_copy.pixel_x = M.pixel_x + offset_x
-				M_copy.pixel_y = M.pixel_y + offset_y
-				legdam_overlays_copy += M_copy
-			legdam_overlays = legdam_overlays_copy
-
-			var/list/armdam_overlays_copy = list()
-			for(var/mutable_appearance/M as anything in armdam_overlays)
-				var/mutable_appearance/M_copy = new /mutable_appearance(M)
-				M_copy.pixel_x = M.pixel_x + offset_x
-				M_copy.pixel_y = M.pixel_y + offset_y
-				armdam_overlays_copy += M_copy
-			armdam_overlays = armdam_overlays_copy
-
+		// Pixel offsets are now applied in the cache, so we can directly add the overlays
 		limb_overlaysa += damage_overlays
 		limb_overlaysb += legdam_overlays
 		limb_overlaysc += armdam_overlays
