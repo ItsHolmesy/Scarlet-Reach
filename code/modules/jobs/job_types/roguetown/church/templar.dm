@@ -24,7 +24,8 @@
 
 	job_subclasses = list(
 		/datum/advclass/templar/monk,
-		/datum/advclass/templar/crusader
+		/datum/advclass/templar/crusader,
+		/datum/virtue/combat/crimson_curse,
 	)
 
 	//No nobility for you, being a member of the clergy means you gave UP your nobility. It says this in many of the church tutorial texts.
