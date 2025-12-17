@@ -645,9 +645,7 @@
 	if(targloc && curloc)
 		target_z = targloc.z
 		if(arcshot)
-			if(targloc.z < curloc.z)
-				arcshot = FALSE
-			else
+			if(targloc.z > curloc.z)
 				var/turf/above = get_step_multiz(curloc, UP)
 				if(above)
 					curloc = above
