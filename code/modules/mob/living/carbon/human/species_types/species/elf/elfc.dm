@@ -12,7 +12,7 @@
 	shortdesc = "<b>Sun Elf</b><br>\
 	An elven subrace hailing from the region of Raneshen. Known for their zealous worship of Astrata and \
 	their widespread practices of slavery. Once ruled over Raneshen in the ancient Dominion of the Sun.<br>\
-	<span style='color: #6a8cb7;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'><b> +1 SPD</b></span> </br>"
+	<span style='color: #6a8cb7;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'><b>+1 INT | +1 PER </b></span> </br>"
 
 	desc = "<b>Sun Elf</b><br>\
 	Native to the region of Raneshen, Sun Elves are an elven subspecies descended \
@@ -29,7 +29,7 @@
 	are vain or power-hungry, and they tend to have imperious and assertive personalities. \
 	It is a common sentiment among Sun Elves that they are the 'chosen' of Astrata, leading \
 	to a great deal of condescension or disdain toward those races deemed 'lesser.'<br>\
-	<span style='color: #6a8cb7;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'><b> +1 PER +1 INT</b></span> </br>"
+	<span style='color: #6a8cb7;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;'><b>+1 INT | +1 PER </b></span> </br>"
 
 
 	skin_tone_wording = "Skintone"
