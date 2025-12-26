@@ -9,6 +9,7 @@
 	allowed_races = RACES_ALL_KINDS
 	allowed_sexes = list(MALE, FEMALE)
 	allowed_ages = list(AGE_ADULT)
+	var/church_favor = 0
 
 	tutorial = "Your family were zealots. They scolded you with a studded belt and prayed like sinners every waking hour of the day they weren't toiling in the fields. You escaped them by becoming a churchling--and a guaranteed education isn't so bad."
 
@@ -32,7 +33,7 @@
 	category_tags = list(CTAG_CHURCHLING)
 	cmode_music = 'sound/music/combat_holy.ogg'
 
-	traits_applied = list(TRAIT_CIVILIZEDBARBARIAN, TRAIT_DODGEEXPERT, TRAIT_CLERGY)
+	traits_applied = list(TRAIT_CLERGY)
 	subclass_stats = list(
 		STATKEY_SPD = 2,
 		STATKEY_PER = 1,
